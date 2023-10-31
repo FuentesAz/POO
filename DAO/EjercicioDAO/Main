@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String[] args) {
+        // Crear una instancia del DAO en memoria
+        UsuarioDAO usuarioDAO = new UsuarioDAOMemoria();
+
+        // Crear y guardar usuarios
+        Usuario usuario1 = new Usuario(1, "Ejemplo 1", "ejemplo1@example.com");
+        Usuario usuario2 = new Usuario(2, "Ejemplo 2", "ejemplo2@example.com");
+
+        usuarioDAO.guardar(usuario1);
+        usuarioDAO.guardar(usuario2);
+
+        // Obtener y mostrar todos los usuarios
+        List<Usuario> usuarios = usuarioDAO.obtenerTodos();
+        for (Usuario usuario : usuarios) {
+            System.out.println("ID: " + usuario.getId() + ", Nombre: " + usuario.getNombre() + ", Email: " + usuario.getEmail());
+        }
+
+        // Actualizar y eliminar usuarios
+        Usuario usuarioActualizado = new Usuario(1, "Ejemplo Actualizado", "actualizado@example.com");
+        usuarioDAO.actualizar(usuarioActualizado);
+
+        usuarioDAO.eliminar(2);
+    }
+}
